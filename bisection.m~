@@ -1,0 +1,28 @@
+function v = bisection(f, a, b, N, tol, esp)
+    % f: function [a, b] N: iterations
+    f = inline(f_str);
+    % set default value
+    if ~exist('eps','var') || isempty(eps)
+      eps=0.001;
+    end
+    if ~exist('N','var') || isempty(N)
+      steps=N;
+    end
+    
+    while abs(b - a) > eps * abs(b)
+        x = (a + b)/2;
+%                 if sign(f(x)) == sign(f(b)) 
+        if sign(f(x))*sign(f(b)) > 0 
+            b = x;
+        else
+            a = x;
+        end
+        k = k + 1;
+        root = x;
+        v = root;
+        if k > steps
+            break;
+        end
+    end
+
+end 
